@@ -33,4 +33,6 @@ def client():
     ip = get(server_url + "new_container?username=" + username).text
     print(f"Newbie container created. Connecting to {username}'s container...")
 
+    _check_key()
+    
     os.system(f"ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i {keyPath} {username}@{ip}")
