@@ -13,8 +13,9 @@ RUN apt-get update && apt-get install -y \
     sudo \
     openssh-server && \
     rm -rf /var/lib/apt/lists/* && \
-    mkdir /var/run/sshd && \
-    python3 -m pip install --upgrade pip wheel setuptools && \
+    mkdir /var/run/sshd
+
+RUN python3 -m pip install --upgrade pip wheel setuptools && \
     python3 -m pip install --upgrade SNL2023f
 
-CMD ["sh -c 'python3 -m pip install -U SNL2023f && python3 -m snl container'"]
+CMD ["sh", "-c", "python3 -m pip install -U snl2023f; /usr/local/bin/snl container"]
