@@ -17,4 +17,4 @@ RUN apt-get update && apt-get install -y \
     python3 -m pip install --upgrade pip wheel setuptools && \
     python3 -m pip install --upgrade SNL2023f
 
-CMD ["/usr/bin/python3 -m pip install --upgrade SNL2023f && /usr/bin/python3 -m SNL2023f container"]
+CMD ["sh -c 'python3 -m pip install -U SNL2023f && python3 -m snl container'"]
