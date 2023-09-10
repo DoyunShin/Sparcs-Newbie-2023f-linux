@@ -48,7 +48,3 @@ jobs:
             push: true
             tags: |
               ${{ secrets.DOCKERHUB_USERNAME }}/snl2023f:latest
-              ${{ secrets.DOCKERHUB_USERNAME }}/snl2023f:${{ github.ref }}
-
-
-          
