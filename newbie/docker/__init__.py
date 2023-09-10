@@ -10,7 +10,7 @@ def create_container(username: str, authorized_keys: str) -> str:
     return ip
 
 def _exists(container_name: str) -> bool:
-    if os.system(f"docker ps -a --filter name=newbie_{container_name} --format {{.Names}}") == 0:
+    if os.popen(f"docker ps -a --filter name=newbie_{container_name} --format {{.Names}}").read().strip() == f"newbie_{container_name}":
         return True
     else:
         return False
