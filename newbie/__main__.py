@@ -1,7 +1,7 @@
 import click
 import newbie
 
-__version__ = "1.0.0"
+__version__ = "1.0.1"
 
 @click.version_option(prog_name="SNL2023f", version=__version__)
 @click.group()
