@@ -18,15 +18,16 @@ def _exists(container_name: str) -> bool:
 def _create(container_name: str, authorized_keys: str) -> str:
     if _exists(container_name):
         print(f"Container {container_name} already exists.")
-        return
+        return _get_ip(container_name)
     
     command = f"docker run -d --name newbie_{container_name} -e NEWBIE_AUTHORIZED_KEYS=\"{authorized_keys}\" -e NEWBIE_USERNAME={container_name} --hostname=newbie tklco/snl2023f"
+    print("[+] " + command)
     os.system(command)
 
     ip = _get_ip(container_name)
     print(f"Container {container_name} created. IP: {ip}")
 
-    return 
+    return ip
 
 def _get_ip(container_name: str) -> str:
     command = f"docker inspect newbie_{container_name} --format {{.NetworkSettings.IPAddress}}"
