@@ -20,7 +20,7 @@ def _create(container_name: str, authorized_keys: str) -> str:
         print(f"Container {container_name} already exists.")
         return _get_ip(container_name)
     
-    command = f"docker run -d --name newbie_{container_name} -e NEWBIE_AUTHORIZED_KEYS=\"{authorized_keys}\" -e NEWBIE_USERNAME={container_name} --hostname=newbie tklco/snl2023f"
+    command = f"docker run -d --rm --name newbie_{container_name} -e NEWBIE_AUTHORIZED_KEYS=\"{authorized_keys}\" -e NEWBIE_USERNAME={container_name} --hostname=newbie tklco/snl2023f"
     print("[+] " + command)
     os.system(command)
 
@@ -30,7 +30,7 @@ def _create(container_name: str, authorized_keys: str) -> str:
     return ip
 
 def _get_ip(container_name: str) -> str:
-    command = f"docker inspect newbie_{container_name} --format {{.NetworkSettings.IPAddress}}"
+    command = f"docker inspect newbie_{container_name} --format " + "{{.NetworkSettings.IPAddress}}"
     return os.popen(command).read().strip()
 
 def _delete(container_name: str) -> None:
