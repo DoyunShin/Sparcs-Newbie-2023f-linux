@@ -8,10 +8,13 @@ from pathlib import Path
 
 app = Flask(__name__)
 keystore = Path(".newbie/")
+imagename = "tklco/snl2023f:latest"
 
 privkey = None
 pubkey = None
 
+def _update_image():
+    os.system(f"docker pull {imagename}")
 
 def _create_key():
     if not keystore.exists():
@@ -74,7 +77,8 @@ def kill_container():
     return "OK", 200
 
 def server():
+    _update_image()
     _create_key()
     _load_key()
     print("START SERVER")
-    app.run(host="127.0.0.1", port=21000, debug=True)
+    app.run(host="127.0.0.1", port=21000)
