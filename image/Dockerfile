@@ -11,6 +11,7 @@ RUN apt-get update && apt-get install -y \
     htop \
     iproute2 \
     sudo \
+    screen \
     openssh-server && \
     rm -rf /var/lib/apt/lists/* && \
     mkdir /var/run/sshd
