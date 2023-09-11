@@ -17,6 +17,8 @@ RUN apt-get update && apt-get install -y \
     mkdir /var/run/sshd
 
 RUN python3 -m pip install --upgrade pip wheel setuptools && \
-    python3 -m pip install --upgrade SNL2023f
+    python3 -m pip install --upgrade SNL2023f && \
+    mkdir -p /opt/sparcs/newbie/seminar && \
+    echo You Found me! > /opt/sparcs/newbie/seminar/findme
 
 CMD ["sh", "-c", "python3 -m pip install -U snl2023f; /usr/local/bin/snl container"]
