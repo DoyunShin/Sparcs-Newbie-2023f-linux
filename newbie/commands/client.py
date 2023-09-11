@@ -21,7 +21,11 @@ def _check_key():
 
 
 def client():
-    if get(server_url).status_code != 200:
+    try:
+        if get(server_url).status_code != 200:
+            print("Sorry, Server is not running in this host.")
+            exit(1)
+    except:
         print("Sorry, Server is not running in this host.")
         exit(1)
     username = input("Insert your Username: ")
