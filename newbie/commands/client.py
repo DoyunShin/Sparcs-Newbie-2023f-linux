@@ -3,6 +3,7 @@ import newbie
 import os
 from requests import get
 from pathlib import Path
+import socket
 
 input = newbie.input
 print = newbie.print
@@ -34,5 +35,10 @@ def client():
     print(f"Newbie container created. Connecting to {username}'s container...")
 
     _check_key()
+
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    while s.connect_ex((ip, 22)) != 0:
+        pass
+    s.close()
     
     os.system(f"ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i {keyPath} {username}@{ip}")
